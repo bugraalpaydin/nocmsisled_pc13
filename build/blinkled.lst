@@ -1,0 +1,187 @@
+ARM GAS  /tmp/ccxK94MS.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"blinkled.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/blinkled.c"
+  18              		.section	.text.gpio_init,"ax",%progbits
+  19              		.align	1
+  20              		.global	gpio_init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	gpio_init:
+  26              	.LFB0:
+   1:Core/Src/blinkled.c **** #include "blinkled.h"
+   2:Core/Src/blinkled.c **** 
+   3:Core/Src/blinkled.c **** #define RCC_APB2ENR *((uint32_t *)0x40021018)
+   4:Core/Src/blinkled.c **** #define RCC_APB2ENR_IOPCEN 1<<4
+   5:Core/Src/blinkled.c **** 
+   6:Core/Src/blinkled.c **** void gpio_init(void){
+  27              		.loc 1 6 21 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   7:Core/Src/blinkled.c ****     RCC_APB2ENR |= RCC_APB2ENR_IOPCEN;
+  32              		.loc 1 7 5 view .LVU1
+  33 0000 074A     		ldr	r2, .L2
+  34 0002 9369     		ldr	r3, [r2, #24]
+  35              		.loc 1 7 17 is_stmt 0 view .LVU2
+  36 0004 43F01003 		orr	r3, r3, #16
+  37 0008 9361     		str	r3, [r2, #24]
+   8:Core/Src/blinkled.c **** 
+   9:Core/Src/blinkled.c ****     *((uint32_t *)0x40011004)&= ~(1<<20);
+  38              		.loc 1 9 5 is_stmt 1 view .LVU3
+  39 000a A2F58032 		sub	r2, r2, #65536
+  40 000e 5368     		ldr	r3, [r2, #4]
+  41              		.loc 1 9 30 is_stmt 0 view .LVU4
+  42 0010 23F48013 		bic	r3, r3, #1048576
+  43 0014 5360     		str	r3, [r2, #4]
+  10:Core/Src/blinkled.c ****     *((uint32_t *)0x40011004)|=  (1<<21);
+  44              		.loc 1 10 5 is_stmt 1 view .LVU5
+  45              		.loc 1 10 30 is_stmt 0 view .LVU6
+  46 0016 43F40013 		orr	r3, r3, #2097152
+  47 001a 5360     		str	r3, [r2, #4]
+  11:Core/Src/blinkled.c **** }
+ARM GAS  /tmp/ccxK94MS.s 			page 2
+
+
+  48              		.loc 1 11 1 view .LVU7
+  49 001c 7047     		bx	lr
+  50              	.L3:
+  51 001e 00BF     		.align	2
+  52              	.L2:
+  53 0020 00100240 		.word	1073876992
+  54              		.cfi_endproc
+  55              	.LFE0:
+  57              		.section	.text.gpio_writepin,"ax",%progbits
+  58              		.align	1
+  59              		.global	gpio_writepin
+  60              		.syntax unified
+  61              		.thumb
+  62              		.thumb_func
+  64              	gpio_writepin:
+  65              	.LFB1:
+  12:Core/Src/blinkled.c **** void gpio_writepin(void){
+  66              		.loc 1 12 25 is_stmt 1 view -0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		@ link register save eliminated.
+  13:Core/Src/blinkled.c ****     *((uint32_t * )0x4001100C) |= (1<<13);
+  71              		.loc 1 13 5 view .LVU9
+  72 0000 024A     		ldr	r2, .L5
+  73 0002 D368     		ldr	r3, [r2, #12]
+  74              		.loc 1 13 32 is_stmt 0 view .LVU10
+  75 0004 43F40053 		orr	r3, r3, #8192
+  76 0008 D360     		str	r3, [r2, #12]
+  14:Core/Src/blinkled.c **** }   
+  77              		.loc 1 14 1 view .LVU11
+  78 000a 7047     		bx	lr
+  79              	.L6:
+  80              		.align	2
+  81              	.L5:
+  82 000c 00100140 		.word	1073811456
+  83              		.cfi_endproc
+  84              	.LFE1:
+  86              		.section	.text.gpio_togglepin,"ax",%progbits
+  87              		.align	1
+  88              		.global	gpio_togglepin
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  93              	gpio_togglepin:
+  94              	.LFB2:
+  15:Core/Src/blinkled.c **** void gpio_togglepin(void){
+  95              		.loc 1 15 26 is_stmt 1 view -0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		@ link register save eliminated.
+  16:Core/Src/blinkled.c ****     *((uint32_t * )0x4001100C) ^= (1<<13);
+ 100              		.loc 1 16 5 view .LVU13
+ 101 0000 024A     		ldr	r2, .L8
+ 102 0002 D368     		ldr	r3, [r2, #12]
+ 103              		.loc 1 16 32 is_stmt 0 view .LVU14
+ARM GAS  /tmp/ccxK94MS.s 			page 3
+
+
+ 104 0004 83F40053 		eor	r3, r3, #8192
+ 105 0008 D360     		str	r3, [r2, #12]
+  17:Core/Src/blinkled.c **** }
+ 106              		.loc 1 17 1 view .LVU15
+ 107 000a 7047     		bx	lr
+ 108              	.L9:
+ 109              		.align	2
+ 110              	.L8:
+ 111 000c 00100140 		.word	1073811456
+ 112              		.cfi_endproc
+ 113              	.LFE2:
+ 115              		.section	.text.gpio_resetpin,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	gpio_resetpin
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 122              	gpio_resetpin:
+ 123              	.LFB3:
+  18:Core/Src/blinkled.c **** void gpio_resetpin(void){
+ 124              		.loc 1 18 25 is_stmt 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              		@ link register save eliminated.
+  19:Core/Src/blinkled.c ****     *((uint32_t * )0x4001100C) &= ~(1<<13);
+ 129              		.loc 1 19 5 view .LVU17
+ 130 0000 024A     		ldr	r2, .L11
+ 131 0002 D368     		ldr	r3, [r2, #12]
+ 132              		.loc 1 19 32 is_stmt 0 view .LVU18
+ 133 0004 23F40053 		bic	r3, r3, #8192
+ 134 0008 D360     		str	r3, [r2, #12]
+  20:Core/Src/blinkled.c **** }
+ 135              		.loc 1 20 1 view .LVU19
+ 136 000a 7047     		bx	lr
+ 137              	.L12:
+ 138              		.align	2
+ 139              	.L11:
+ 140 000c 00100140 		.word	1073811456
+ 141              		.cfi_endproc
+ 142              	.LFE3:
+ 144              		.text
+ 145              	.Letext0:
+ 146              		.file 2 "/home/bugraaa/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
+ 147              		.file 3 "/home/bugraaa/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
+ARM GAS  /tmp/ccxK94MS.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 blinkled.c
+     /tmp/ccxK94MS.s:19     .text.gpio_init:00000000 $t
+     /tmp/ccxK94MS.s:25     .text.gpio_init:00000000 gpio_init
+     /tmp/ccxK94MS.s:53     .text.gpio_init:00000020 $d
+     /tmp/ccxK94MS.s:58     .text.gpio_writepin:00000000 $t
+     /tmp/ccxK94MS.s:64     .text.gpio_writepin:00000000 gpio_writepin
+     /tmp/ccxK94MS.s:82     .text.gpio_writepin:0000000c $d
+     /tmp/ccxK94MS.s:87     .text.gpio_togglepin:00000000 $t
+     /tmp/ccxK94MS.s:93     .text.gpio_togglepin:00000000 gpio_togglepin
+     /tmp/ccxK94MS.s:111    .text.gpio_togglepin:0000000c $d
+     /tmp/ccxK94MS.s:116    .text.gpio_resetpin:00000000 $t
+     /tmp/ccxK94MS.s:122    .text.gpio_resetpin:00000000 gpio_resetpin
+     /tmp/ccxK94MS.s:140    .text.gpio_resetpin:0000000c $d
+
+NO UNDEFINED SYMBOLS
